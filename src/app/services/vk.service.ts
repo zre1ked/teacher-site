@@ -28,7 +28,7 @@ export class VkService {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/vk-posts');
+      const response = await fetch('/api/vk-posts');
       const data = await response.json();
       
       const items = data.response?.items || [];
