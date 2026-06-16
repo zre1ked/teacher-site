@@ -1,0 +1,28 @@
+<div class="contacts-page">
+    <section class="contacts">
+        <div class="contacts__container">
+            <h1 class="contacts__title">Контакты и ссылки</h1>
+            
+            <div class="contacts__content">
+                <div class="contacts__info">
+                    <h2 class="contacts__subtitle">Контактная информация</h2>
+                    <p class="contacts__text">Тут будет контактная информация преподавателя</p>
+                    <p class="contacts__text">Email: teacher@example.com</p>
+                    <p class="contacts__text">Телефон: +7 (000) 000-00-00</p>
+                </div>
+                
+                <div class="contacts__links">
+                    <h2 class="contacts__subtitle">Полезные ссылки</h2>
+                    <ul class="contacts__links-list">
+                        <li *ngFor="let link of links" class="contacts__link-item">
+                            <a [href]="link.url" class="contacts__link">
+                                <span class="contacts__link-icon">{{ link.icon }}</span>
+                                <span class="contacts__link-text">{{ link.title }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

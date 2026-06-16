@@ -1,0 +1,50 @@
+<div class="blog-page">
+    <section class="blog">
+        <div class="blog__container">
+            <h1 class="blog__title">Родителям</h1>
+            <p class="blog__subtitle">Информация для родителей учеников</p>
+            
+            <div class="blog__actions">
+                <a href="https://vk.com/club239620084" target="_blank" class="blog__vk-button">
+                    <span class="blog__vk-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.958 17.157h-2.163c-1.697 0-2.218-1.347-5.263-4.458-.996-1.023-1.45-1.158-1.709-1.158-.348 0-.437.1-.437.575v3.882c0 .407-.13.65-1.204.65h-1.99c-1.64 0-2.162-1.215-2.162-2.162 0-2.052 2.338-6.37 5.15-9.01 2.6-2.44 5.8-2.55 5.8-1.37 0 .424-.273 1.74-.273 1.74s-.71 4.718-.87 5.374c-.19.79-.63.79-.87.79-.22 0-1.66-1.08-2.66-2.02-.76-.72-.97-.94-1.19-.94-.13 0-.22.06-.22.36 0 .93 1.19 3.23 2.38 4.94 1.19 1.71 2.55 2.68 4.08 2.68h1.63c.43 0 .65-.18.65-.54 0-.97-1.08-2.6-1.08-2.6s-.33-.4-.11-.65c.19-.24.65-.18 1.08 0 .43.18 2.77 1.79 3.25 2.34.48.55.48 1.07.48 1.07s0 .38-.22.38z"/></svg>
+                    </span>
+                    Перейти в группу VK
+                </a>
+                <button class="blog__refresh-button" (click)="loadPosts()">🔄 Обновить</button>
+            </div>
+
+            <div class="blog__loading" *ngIf="isLoading">
+                <div class="blog__spinner"></div>
+                <p>Загрузка...</p>
+            </div>
+
+            <div class="blog__grid" *ngIf="!isLoading && posts.length > 0">
+                <article *ngFor="let post of posts" class="blog__card">
+                    <div class="blog__card-image" *ngIf="post.hasImage">
+                        <img [src]="post.image" alt="Фото к посту" loading="lazy">
+                    </div>
+                    <div class="blog__card-content">
+                        <time class="blog__card-date">📅 {{ post.date }}</time>
+                        <div class="blog__card-text-wrapper" [class.expanded]="isExpanded(post.id)" [class.collapsed]="post.isLong && !isExpanded(post.id)">
+                            <p class="blog__card-text">{{ isExpanded(post.id) ? post.text : post.shortText }}</p>
+                            <div class="blog__card-gradient" *ngIf="post.isLong && !isExpanded(post.id)"></div>
+                        </div>
+                        <div class="blog__card-actions">
+                            <button *ngIf="post.isLong" class="blog__card-expand" (click)="toggleExpand(post.id)">
+                                {{ isExpanded(post.id) ? 'Свернуть ▲' : 'Показать полностью ▼' }}
+                            </button>
+                            <a [href]="post.url" target="_blank" class="blog__card-link">Открыть в VK →</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="blog__empty" *ngIf="!isLoading && posts.length === 0">
+                <div class="blog__empty-icon">👨‍👩‍👧‍👦</div>
+                <p>Пока нет материалов для родителей</p>
+                <p class="blog__empty-sub">Посты с хештегом #Родителям появятся здесь</p>
+            </div>
+        </div>
+    </section>
+</div>

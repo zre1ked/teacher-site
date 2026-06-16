@@ -1,0 +1,17 @@
+<div class="gallery-page">
+    <section class="gallery">
+        <div class="gallery__container">
+            <h1 class="gallery__title">Галерея</h1>
+            <div class="gallery__grid">
+                <div *ngFor="let image of images" class="gallery__item" (click)="openLightbox(image)">
+                    <img [src]="image.src" [alt]="image.alt" class="gallery__image">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="lightbox" [class.active]="isLightboxOpen" (click)="closeLightbox()">
+        <span class="lightbox__close" (click)="closeLightbox()">&times;</span>
+        <img class="lightbox__image" [src]="selectedImage?.src" [alt]="selectedImage?.alt" (click)="$event.stopPropagation()">
+    </div>
+</div>

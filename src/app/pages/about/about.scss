@@ -1,0 +1,87 @@
+@use '../../../styles/variables' as *;
+
+.about-page {
+    .about {
+        padding: $spacing-3xl 0;
+        
+        &__container {
+            max-width: $container-max-width;
+            margin: 0 auto;
+            padding: 0 $container-padding;
+        }
+        
+        &__title {
+            font-size: $font-size-2xl;
+            color: $text-color;
+            margin-bottom: $spacing-2xl;
+            text-align: center;
+        }
+        
+        &__content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: $spacing-2xl;
+            margin-bottom: $spacing-3xl;
+            align-items: start;
+        }
+        
+        &__image img {
+            width: 100%;
+            border-radius: $border-radius-md;
+            box-shadow: $shadow-md;
+        }
+        
+        &__subtitle {
+            font-size: $font-size-xl;
+            color: $primary-color;
+            margin-bottom: $spacing-md;
+        }
+        
+        &__text {
+            font-size: $font-size-base;
+            color: $text-light;
+            line-height: 1.8;
+        }
+        
+        &__details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: $spacing-lg;
+        }
+        
+        &__card {
+            background-color: $white;
+            border: 1px solid $border-color;
+            border-radius: $border-radius-md;
+            padding: $spacing-xl;
+            transition: all $transition-medium;
+            
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: $shadow-md;
+            }
+            
+            &-title {
+                font-size: $font-size-lg;
+                color: $primary-color;
+                margin-bottom: $spacing-md;
+            }
+            
+            &-text {
+                font-size: $font-size-base;
+                color: $text-light;
+            }
+        }
+    }
+    
+    @media (max-width: $tablet) {
+        .about__content {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        .about__image {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+    }
+}
